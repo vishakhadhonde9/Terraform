@@ -1,7 +1,29 @@
 # Introduction -
 - Terraform is an **Infrastructure as Code (IaC)** tool created by HashiCorp.
+- . It allows you to define, provision, and manage infrastructure (like servers, databases, networks, and storage) using a declarative configuration language (HCL - HashiCorp Configuration Language).
 - Terraform is a tool that helps you create and manage cloud resources using code instead of manually creating it.
 - Terraform automates infrastructure deployment, reducing manual effort and human errors.
+
+# Configuration -
+## On Windows -
+- Download Terraform:
+
+      https://developer.hashicorp.com/terraform/downloads
+
+- Select the Windows version and download the .zip file.
+
+- Extract the .zip file.
+- Move the terraform.exe file to folder that you created  program files.
+- Add Terraform to System PATH:
+    - Open Control Panel > System > Advanced System Settings > Environment Variables
+    - Under "System Variables," select Path and click Edit
+- Click New and add the Terraform directory path.
+- Click OK and restart the terminal.
+- Verify Installation:
+
+      terraform version
+
+
 
 # Terraform Lifecycle -
 
@@ -22,3 +44,5 @@ infrastructure with the desired state.
    - When infrastructure is no longer needed, or for testing purposes, run terraform
 destroy to tear down all resources created by Terraform. This is irreversible, so use with caution.
 
+
+# Providers -
