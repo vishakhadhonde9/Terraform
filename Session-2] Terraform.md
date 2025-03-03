@@ -14,11 +14,35 @@
 | AWS              | `aws`                          | `hashicorp/aws`                    |
 | Microsoft Azure  | `azurerm`                      | `hashicorp/azurerm`                |
 | Google Cloud     | `google`                       | `hashicorp/google`                 |
-| Oracle Cloud     | `oci`                          | `oracle/oci`                       |
-| IBM Cloud       | `ibm`                          | `IBM-Cloud/ibm`                    |
-| Alibaba Cloud   | `alicloud`                     | `aliyun/alicloud`                  |
 
 
+# Provider Versioning
+
+                terraform {
+                  required_providers {
+                    aws = {
+                      source  = "hashicorp/aws"
+                      version = "~> 5.0"
+                    }
+                  }
+                }
+
+
+
+# Resources -
+- A resource is a cloud infrastructure component created by Terraform.
+- Examples of resources:
+   - EC2 instances
+   - S3 buckets
+   - VPCs
+   - IAM users
+   - Declaring a Resource
+
+
+        resource "aws_instance" "block_name" {
+          ami           = "ami-12345678"
+          instance_type = "t2.micro"
+        }
 
 
 
