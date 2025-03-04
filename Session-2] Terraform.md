@@ -39,10 +39,10 @@
    - Declaring a Resource
 
 
-        resource "aws_instance" "block_name" {
-          ami           = "ami-12345678"
-          instance_type = "t2.micro"
-        }
+                resource "aws_instance" "block_name" {
+                  ami           = "ami-12345678"
+                  instance_type = "t2.micro"
+                }
 
 
 
