@@ -7,9 +7,9 @@
 - This is useful for local development and CI/CD pipelines.
 
 
-    export AWS_ACCESS_KEY_ID="your-access-key"
-    export AWS_SECRET_ACCESS_KEY="your-secret-key"
-    export AWS_DEFAULT_REGION="us-east-1"  # (optional)
+            export AWS_ACCESS_KEY_ID="your-access-key"
+            export AWS_SECRET_ACCESS_KEY="your-secret-key"
+            export AWS_DEFAULT_REGION="us-east-1"  # (optional)
 
 
 - You need to set these every time you open a new terminal session.
