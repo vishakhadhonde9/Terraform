@@ -154,7 +154,16 @@ terraform apply
 
 
 
-## 
+## tfvar file -
+
+
+            region_name = "ap-south-1"
+            ins_type    = "t2.micro"
+            my_ami      = "ami-00bb6a80f01f03502"
+            vpc_id      = "vpc-0ed0001bdda8ffe0d"
+            my_access_key = "your-access-key-here"
+            secret_key    = "your-secret-key-here"
+
  
 
 
