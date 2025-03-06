@@ -3,6 +3,10 @@
 - This file named **terraform.tfstate** is a JSON or HCL (HashiCorp Configuration Language) formatted file that contains important information about the infrastructure's current state, such as resource attributes, dependencies, and metadata.
 - By default, Terraform saves it locally in your project folder.
 
+# terraform.tfstate.backup -
+- terraform.tfstate.backup is a copy of your previous terraform.tfstate file.
+- If Terraform updates the state and something fails, you can use the backup to restore the last working state.
+
 
 ## Advantages of Terraform State File -
 - Resource Tracking:
