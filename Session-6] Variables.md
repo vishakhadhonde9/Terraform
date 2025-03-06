@@ -9,6 +9,22 @@
 - Input variables allow users to pass values into Terraform configurations.
 
 ### Declear -
+##### main.tf-
+
+            provider "aws" {
+                    region = "us-east-1"
+            }
+            
+            
+            resource "aws_instance" "myinstance" {
+                    ami = "ami-05b10e08d247fb927"
+              instance_type = var.instance_type
+            }
+
+
+
+##### var.tf -
+
 
       variable "instance_type" {
         description = "Type of EC2 instance"
@@ -24,8 +40,8 @@
 - Create a file_name.tfvars file.
 
 
-      instance_type = "t3.medium"
-      region        = "us-west-2"
+      instance_type = "t3.micro"
+      
 
 
 terraform apply -var-file="terraform.tfvars"
