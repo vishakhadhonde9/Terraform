@@ -46,20 +46,20 @@
 
 ### variable.tf -
 
-variable "project_name" {
-  description = "Project name prefix for EC2 instance"
-  default     = "workspace-demo"
-}
-
-variable "instance_type_dev" {
-  description = "EC2 instance type for dev"
-  default     = "t2.micro"
-}
-
-variable "instance_type_prod" {
-  description = "EC2 instance type for production"
-  default     = "t3.medium"
-}
+        variable "project_name" {
+          description = "Project name prefix for EC2 instance"
+          default     = "workspace-demo"
+        }
+        
+        variable "instance_type_dev" {
+          description = "EC2 instance type for dev"
+          default     = "t2.micro"
+        }
+        
+        variable "instance_type_prod" {
+          description = "EC2 instance type for production"
+          default     = "t3.medium"
+        }
 
 
 
