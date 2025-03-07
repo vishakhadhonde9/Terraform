@@ -72,7 +72,7 @@
       
       1. In your Terraform configuration file (e.g., `main.tf`), define the remote backend:
       
-         ```hcl
+         
          terraform {
            backend "s3" {
              bucket         = "your-terraform-state-bucket"
