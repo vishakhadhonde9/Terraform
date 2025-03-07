@@ -75,12 +75,12 @@ terraform apply -var-file="terraform.tfvars"
 
 ##### Directory -
 
-terraform-output-vars/
-│── main.tf             # Main Terraform configuration
-│── variables.tf        # Defines input variables
-│── outputs.tf          # Stores output variables
-│── terraform.tfvar
-
+            terraform-output-vars/
+            │── main.tf             # Main Terraform configuration
+            │── variables.tf        # Defines input variables
+            │── outputs.tf          # Stores output variables
+            │── terraform.tfvar
+            
 
 
 #### output.tf -
