@@ -8,7 +8,18 @@
 ## 1]  Input Variables -
 - Input variables allow users to pass values into Terraform configurations.
 
+
 ### Declear -
+**Directory -**
+
+            terraform-input-vars/
+            │── main.tf             # Main Terraform configuration
+            │── variables.tf        # Defines input variables
+            │── terraform.tfvars    # Stores default values for input variable
+            
+
+
+
 ##### main.tf-
 
             provider "aws" {
@@ -62,6 +73,18 @@ terraform apply -var-file="terraform.tfvars"
 - An output variable in Terraform is used to display important values after running Terraform.
 - It helps in getting information like public IPs, resource IDs, or other attributes of created resources.
 
+##### Directory -
+
+terraform-output-vars/
+│── main.tf             # Main Terraform configuration
+│── variables.tf        # Defines input variables
+│── outputs.tf          # Stores output variables
+│── terraform.tfvar
+
+
+
+#### output.tf -
+
 
       resource "aws_instance" "example" {
         ami           = "ami-12345678"
@@ -77,8 +100,7 @@ terraform apply -var-file="terraform.tfvars"
 terraform apply
 
 ## 3] Local Variables -
-- Local variables store reusable values inside Terraform.
-- They help avoid repetition and make the code clean.
+- A local value assigns a name to an expression, allowing it to be used multiple times within a module without repeating it.
 
 ###### Without Local Variable (Repetition) -
 
@@ -97,7 +119,6 @@ terraform apply
               Owner       = "DevOps"
             }
           }
-         
          
          
 ##### Local Variable -
