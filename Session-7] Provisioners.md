@@ -86,9 +86,9 @@
 - Provisioers are used to set up newly created resources, to execute scripts on a remote or local machine and to copy files to a remote machine.
 
 # Types of Provisioners:
-Local-exec – Runs a command on your local machine.
-Remote-exec – Runs a command on the remote machine (like an EC2 instance).
-File – Copies files from your local machine to the remote machine.
+- Local-exec – Runs a command on your local machine.
+- Remote-exec – Runs a command on the remote machine (like an EC2 instance).
+- File – Copies files from your local machine to the remote machine.
 
 ## 1] Local-exec -
 - Runs a command on your local machine (where Terraform is running).
