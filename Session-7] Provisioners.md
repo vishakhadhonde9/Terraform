@@ -92,7 +92,9 @@
 
 ## 1] Local-exec -
 - Runs a command on your local machine (where Terraform is running).
-
+provider "aws" {
+  region = "us-east-1"
+}
         resource "aws_instance" "example" {
           ami           = "ami-123456"  # Replace with a valid AMI
           instance_type = "t2.micro"
