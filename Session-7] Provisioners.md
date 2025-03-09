@@ -97,10 +97,30 @@
         provider "aws" {
           region = "us-east-1"
         }
+        resource "aws_security_group" "ssh_sg" {
+          name        = "allow_ssh"
+          description = "Allow SSH inbound traffic"
+        
+          ingress {
+            from_port   = 22
+            to_port     = 22
+            protocol    = "tcp"
+            cidr_blocks = ["0.0.0.0/0"]  # Change to restrict access
+          }
+        
+          egress {
+            from_port   = 0
+            to_port     = 0
+            protocol    = "-1"
+            cidr_blocks = ["0.0.0.0/0"]
+          }
+        }
+
         resource "aws_instance" "example" {
           ami           = "ami-123456"  # Replace with a valid AMI
           instance_type = "t2.micro"
           key_name = "key_pair_name"
+          security_groups = [aws_security_group.ssh_sg.name]
         
           provisioner "local-exec" {
             command = "echo 'EC2 Instance Created Successfully' > instance-info.txt"
@@ -133,66 +153,80 @@
 
 ### Example -
 
+                provider "aws" {
+                  region = "us-east-1"
+                }
+                
+                # Generate an SSH Key Pair
+                resource "tls_private_key" "rsa" {
+                  algorithm = "RSA"
+                  rsa_bits  = 2048
+                }
+                
+                # Save Private Key to Local File
+                resource "local_file" "private_key" {
+                  content  = tls_private_key.rsa.private_key_pem
+                  filename = "id_rsa"
+                }
+                
+                # Create Key Pair in AWS
+                resource "aws_key_pair" "generated_key" {
+                  key_name   = "terraform-key"
+                  public_key = tls_private_key.rsa.public_key_openssh
+                }
+                
+                # Security Group allowing SSH
+                resource "aws_security_group" "ssh_sg" {
+                  name        = "allow_ssh"
+                  description = "Allow SSH inbound traffic"
+                
+                  ingress {
+                    from_port   = 22
+                    to_port     = 22
+                    protocol    = "tcp"
+                    cidr_blocks = ["0.0.0.0/0"]  # Change for security
+                  }
+                
+                  egress {
+                    from_port   = 0
+                    to_port     = 0
+                    protocol    = "-1"
+                    cidr_blocks = ["0.0.0.0/0"]
+                  }
+                }
+                
+                # Create EC2 Instance
+                resource "aws_instance" "example" {
+                  ami                    = "ami-0c55b159cbfafe1f0"  # Change based on your region
+                  instance_type          = "t2.micro"
+                  key_name               = aws_key_pair.generated_key.key_name
+                  vpc_security_group_ids = [aws_security_group.ssh_sg.id]
+                
+                  provisioner "remote-exec" {
+                    connection {
+                      type        = "ssh"
+                      user        = "ubuntu"  # Change to "ec2-user" for Amazon Linux
+                      private_key = tls_private_key.rsa.private_key_pem
+                      host        = self.public_ip
+                    }
+                
+                    inline = [
+                      "echo 'Terraform Remote Exec Works!' > ~/test.txt",
+                      "sudo apt update -y",
+                      "sudo apt install -y nginx",
+                      "sudo systemctl start nginx",
+                      "sudo systemctl enable nginx"
+                    ]
+                  }
+                
+                  tags = {
+                    Name = "TerraformInstance"
+                  }
+                }
+                
+                
 
-      provider "aws" {
-        region = "us-east-1"  # Change region if needed
-      }
       
-      # Create a Security Group for EC2
-      resource "aws_security_group" "mysg" {
-        name        = "web-server-sg"
-        description = "Allow SSH and HTTP access"
-      
-        # Allow SSH access from anywhere (only for testing, restrict in production)
-        ingress {
-          from_port   = 22
-          to_port     = 22
-          protocol    = "tcp"
-          cidr_blocks = ["0.0.0.0/0"]
-        }
-      
-        # Allow HTTP access from anywhere
-        ingress {
-          from_port   = 80
-          to_port     = 80
-          protocol    = "tcp"
-          cidr_blocks = ["0.0.0.0/0"]
-        }
-      
-        # Allow all outbound traffic
-        egress {
-          from_port   = 0
-          to_port     = 0
-          protocol    = "-1"
-          cidr_blocks = ["0.0.0.0/0"]
-        }
-      }
-      
-      # Create an EC2 instance
-      resource "aws_instance" "myec2" {
-        ami                    = "ami-0c02fb55956c7d316"  # Replace with a valid Amazon Linux AMI
-        instance_type          = "t2.micro"
-        key_name               = aws_key_pair.my_key.key_name
-        vpc_security_group_ids = [aws_security_group.mysg.id]
-      
-        # Provisioner to install and start Nginx
-        provisioner "remote-exec" {
-          inline = [
-            "sudo yum update -y",
-            "sudo yum install nginx -y",
-            "sudo systemctl start nginx",
-            "sudo sh -c 'echo Hello from Terraform! > /usr/share/nginx/html/index.html'"
-          ]
-        }
-      
-        # SSH Connection Settings
-        connection {
-          type        = "ssh"
-          user        = "ec2-user"
-          host        = self.public_ip
-          private_key = tls_private_key.rsa.private_key_pem
-        }
-
 
 ## 3] File Provisioner -
 - File provisioner is used to copy files or directories from the local machine to a remote machine.
