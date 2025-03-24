@@ -85,41 +85,23 @@
     }
 
  
- root/variables.tf (Define Input Variables for Root)
-hcl
-Copy
-Edit
-variable "ami_id" {
-  description = "AMI ID for the EC2 instance"
-  type        = string
-}
+## root/variables.tf (Define Input Variables for Root)
 
-variable "instance_type" {
-  description = "Instance type for the EC2 instance"
-  type        = string
-}
-2.4 root/terraform.tfvars (Provide Variable Values)
-hcl
-Copy
-Edit
-ami_id         = "ami-12345678"
-instance_type  = "t2.micro"
-Step 3: Run Terraform Commands
-1️⃣ Initialize Terraform
-Run this inside the root/ directory:
+                    variable "ami_id" {
+                      description = "AMI ID for the EC2 instance"
+                      type        = string
+                    }
+                    
+                    variable "instance_type" {
+                      description = "Instance type for the EC2 instance"
+                      type        = string
+                    }
 
-bash
-Copy
-Edit
-terraform init
-✅ This will download any required Terraform providers and initialize the module.
+                    
+## root/terraform.tfvars (Provide Variable Values)
 
-2️⃣ Plan the Deployment
-bash
-Copy
-Edit
-terraform plan
-✅ This shows what 
+                    ami_id         = "ami-12345678"
+                    instance_type  = "t2.micro"
 
 
 
