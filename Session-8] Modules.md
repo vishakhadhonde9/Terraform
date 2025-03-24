@@ -9,8 +9,10 @@
 - It usually resides in the root directory of your Terraform project.
 
 ## Child Module -
+- A reusable module that defines specific resources (e.g., EC2, VPC, RDS).
+- Stored in a separate directory and used by the root module.
 
-A reusable module that defines specific resources (e.g., EC2, VPC, RDS).
-
-Stored in a separate directory and used by the root module.
+## Public Module (Terraform Registry) -
+- Pre-built modules available at Terraform Registry.
+- Example: terraform-aws-modules/vpc/aws provides a reusable AWS VPC module.
 
