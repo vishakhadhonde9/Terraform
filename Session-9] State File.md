@@ -101,22 +101,6 @@
               region = "us-east-1"
             }
             
-            # DynamoDB Table for State Locking
-            resource "aws_dynamodb_table" "terraform_lock" {
-              name         = "terraform-lock"
-              billing_mode = "PAY_PER_REQUEST"
-              hash_key     = "LockID"
-            
-              attribute {
-                name = "LockID"
-                type = "S"
-              }
-            
-              tags = {
-                Name = "TerraformLockTable"
-              }
-            }
-            
             # EC2 Instance
             resource "aws_instance" "my_ec2" {
               ami           = "ami-0c55b159cbfafe1f0"  # Replace with a valid AMI ID
